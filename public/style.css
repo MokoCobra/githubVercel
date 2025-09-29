@@ -3031,7 +3031,7 @@ BODY {
 .ImgLoginBanner {
   background-repeat: no-repeat;
   background-position: bottom left;
-  background-image: url(/skins/_base/logos/LoginBanner_white.png?v=241202160329);
+  background-image: url('LoginBanner_white.png');
   width: 440px;
   height: 60px;
 }
