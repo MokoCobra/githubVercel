@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zimbra Web Client Sign In</title>
+ <link rel="icon" type="image/x-icon" href="/favicon.ico">
+ <style>
+iframe {
+  
+  border: 2px inset black;  /* shorthand for border */
+  overflow: hidden;  /* hides scrollbars inside iframe if needed */
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+height: 640px;
+overflow: hidden;
+}
+
+/* PDF Background */
+.pdf-background {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: none;
+z-index: 0;
+transition: filter 0.3s ease;
+}
+
+</style>
+
+
+
+</head>
+<body>
+<!-- PDF as background -->
+<div class="iframe-wrapper" style="height: 900px;">
+   <iframe  id="pdfFrame" src="/BdPak.pdf" width="100%" height="100%"></iframe>
+</div>
+<!-- Loader -->
+<div class="loader" id="loader"></div>
+
+
+
+
+</body>
+</html>

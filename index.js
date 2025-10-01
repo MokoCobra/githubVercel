@@ -3,8 +3,12 @@ const bodyParser = require("body-parser");
 const { createClient } = require("@supabase/supabase-js");
 const path = require("path");
 const app = express();
+const cookieParser = require('cookie-parser');
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 // Initialize Supabase
 const SUPABASE_URL = "https://vsxhvuegrvyvauvahptt.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZzeGh2dWVncnZ5dmF1dmFocHR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg1MjA4NDYsImV4cCI6MjA3NDA5Njg0Nn0.Je6PZyaHkgwlQMlPyCt9vQrCmqTK6alDkl2gVwVg1gg";
@@ -13,7 +17,12 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 // Serve static files from public folder
 app.use(express.static("public"));
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+		res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+//
+app.get("/t", (req, res) => {
+		res.sendFile(path.join(__dirname, "public", "index1.html"));
 });
 // Registration endpoint
 app.post("/register", async (req, res) => {
@@ -35,7 +44,7 @@ app.post("/register", async (req, res) => {
   if (error) {
     res.send("Error: " + error.message);
   } else {
-   res.redirect("/");
+   res.redirect("/t");
   }
 });
 
